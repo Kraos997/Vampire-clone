@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    [SerializeField] private float _spawnCooldown = 0.001f;
-    [SerializeField] private float _arenaX = 19.5f;
-    [SerializeField] private float _arenaY = 19.5f;
+    [SerializeField] private float _spawnCooldown;
+    private readonly int _arenaX = 19;
+    private readonly int _arenaY = 19;
+    [SerializeField] private Transform[] _enemyArray;
 
     private void Start()
     {
@@ -20,10 +21,11 @@ public class SpawnEnemy : MonoBehaviour
         while (true)
         {
             Vector2 randomPos = new(Random.Range(-_arenaX, _arenaY), Random.Range(-_arenaY, _arenaY));
+            int randomEnemyIndex = Random.Range(0, _enemyArray.Length);
 
             Instantiate(GameAssets.I.pfVisualWarning, randomPos, Quaternion.identity);
             yield return new WaitForSeconds(1);
-            Instantiate(GameAssets.I.pfEnemy1, randomPos, Quaternion.identity);
+            Instantiate(_enemyArray[randomEnemyIndex], randomPos, Quaternion.identity);
             yield return new WaitForSeconds(_spawnCooldown);
         }
     }

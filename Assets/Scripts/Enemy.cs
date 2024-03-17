@@ -81,19 +81,22 @@ public class Enemy : MonoBehaviour
     public static Enemy GetClosest(Vector2 position, float maxRange)
     {
         Enemy closest = null;
-        foreach (Enemy enemy in EnemyList)
+        if (EnemyList != null)
         {
-            if(Vector2.Distance(position, enemy.GetPosition()) <= maxRange)
+            foreach (Enemy enemy in EnemyList)
             {
-                if (closest == null)
+                if (Vector2.Distance(position, enemy.GetPosition()) <= maxRange)
                 {
-                    closest = enemy;
-                }
-                else
-                {
-                    if(Vector2.Distance(position, enemy.GetPosition()) < Vector2.Distance(position, closest.GetPosition()))
+                    if (closest == null)
                     {
                         closest = enemy;
+                    }
+                    else
+                    {
+                        if (Vector2.Distance(position, enemy.GetPosition()) < Vector2.Distance(position, closest.GetPosition()))
+                        {
+                            closest = enemy;
+                        }
                     }
                 }
             }

@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     private void Start()
     {
-        Enemy.EnemyList.Clear();
+        Enemy.EnemyList?.Clear();
     }
-
 }
