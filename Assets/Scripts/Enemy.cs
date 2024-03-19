@@ -1,6 +1,7 @@
 using CodeMonkey.Utils;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class Enemy : MonoBehaviour
 
     //Other
     public static List<Enemy> EnemyList;
+    public static int Spatialgroup;
+    public static List<Enemy> EnemySpatialGroup;
     
     private void Awake()
     {
@@ -26,6 +29,18 @@ public class Enemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
 
         _healthSystem.OnHealthChange += HealthSystem_OnHealthChange;
+        Spatialgroup = Utils.GetSpatialGroupStatic(transform.position.x, transform.position.y);
+        if (EnemySpatialGroup == null)
+        {
+            EnemySpatialGroup = new List<Enemy>
+            {
+                this
+            };
+        }
+        else
+        {
+            EnemySpatialGroup.Add(this);
+        }
         if (EnemyList == null)
         {
             EnemyList = new List<Enemy>
@@ -40,9 +55,47 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        //transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, _enemySO.Speed * Time.deltaTime);
+         //transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, _enemySO.Speed * Time.deltaTime);
         //_rigidbody.MovePosition((Vector2)transform.position + (_enemySO.Speed * Time.deltaTime * _player.transform.position));
+       
+    }
+
+    private void FixedUpdate()
+    {
+        Movement();
+    }
+    private void Movement()
+    {
         _rigidbody.MovePosition(Vector2.MoveTowards(transform.position, _player.transform.position, _enemySO.Speed * Time.deltaTime));
+
+        PushNearbyEnemies();
+
+        int newSpatialGroup = Utils.GetSpatialGroupStatic(transform.position.x, transform.position.y);
+        if (newSpatialGroup != Spatialgroup)
+        {
+            EnemySpatialGroup.Remove(this);
+            Spatialgroup = newSpatialGroup;
+            EnemySpatialGroup.Add(this);
+        }
+    }
+
+    private void PushNearbyEnemies()
+    {
+        List<Enemy> currAreaEnemies = EnemySpatialGroup.ToList();
+
+        foreach(Enemy enemy in currAreaEnemies)
+        {
+            if (enemy == null) continue;
+            if (enemy == this) continue;
+
+            float distance = Mathf.Abs(transform.position.x - enemy.transform.position.x) + Mathf.Abs(transform.position.y - enemy.transform.position.y);
+            if (distance < 0.2f)
+            {
+                Vector3 direction = transform.position - enemy.transform.position;
+                direction.Normalize();
+                enemy.transform.position -= direction * Time.deltaTime * _enemySO.Speed * 5;
+            }
+        }
     }
 
     public void TakeDamage()
@@ -76,32 +129,6 @@ public class Enemy : MonoBehaviour
         {
             Death();
         }
-    }
-
-    public static Enemy GetClosest(Vector2 position, float maxRange)
-    {
-        Enemy closest = null;
-        if (EnemyList != null)
-        {
-            foreach (Enemy enemy in EnemyList)
-            {
-                if (Vector2.Distance(position, enemy.GetPosition()) <= maxRange)
-                {
-                    if (closest == null)
-                    {
-                        closest = enemy;
-                    }
-                    else
-                    {
-                        if (Vector2.Distance(position, enemy.GetPosition()) < Vector2.Distance(position, closest.GetPosition()))
-                        {
-                            closest = enemy;
-                        }
-                    }
-                }
-            }
-        }
-        return closest;
     }
     public Vector3 GetPosition()
     {

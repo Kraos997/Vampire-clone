@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 78c5b32fa18cfc54bb749896334452e5, type: 3}
+    - target: {fileID: 2351484660911104589, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3860796758780720161, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.5
@@ -110,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013375538128045840, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
       propertyPath: m_LayerOverridePriority
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4995002740738722839, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}

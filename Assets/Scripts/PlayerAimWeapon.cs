@@ -43,7 +43,6 @@ public class PlayerAimWeapon : MonoBehaviour
 
     private void HandleShooting()
     {
-
         if (canShootTimer > 0)
         {
             canShootTimer -= Time.deltaTime;
@@ -69,7 +68,7 @@ public class PlayerAimWeapon : MonoBehaviour
     private void Shoot()
     {
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
-        Enemy enemy = Enemy.GetClosest(aimEndPointTransform.position, 15000f);
+        Enemy enemy = Utils.GetClosest(aimEndPointTransform.position, 15000f);
         //Debug.Log(enemy);
         if (enemy != null)
         {

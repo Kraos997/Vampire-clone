@@ -6,8 +6,8 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     [SerializeField] private float _spawnCooldown;
-    private readonly int _arenaX = 19;
-    private readonly int _arenaY = 19;
+    private static readonly int _arenaX = 19;
+    private static readonly int _arenaY = 19;
     [SerializeField] private Transform[] _enemyArray;
 
     private void Start()
@@ -24,7 +24,7 @@ public class SpawnEnemy : MonoBehaviour
             int randomEnemyIndex = Random.Range(0, _enemyArray.Length);
 
             Instantiate(GameAssets.I.pfVisualWarning, randomPos, Quaternion.identity);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(_spawnCooldown);
             Instantiate(_enemyArray[randomEnemyIndex], randomPos, Quaternion.identity);
             yield return new WaitForSeconds(_spawnCooldown);
         }
