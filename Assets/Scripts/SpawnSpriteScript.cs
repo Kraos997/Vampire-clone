@@ -6,6 +6,6 @@ public class SpawnSpriteScript : MonoBehaviour
 {
     public void Awake()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, SpawnEnemy._spawnCooldown);
     }
 }

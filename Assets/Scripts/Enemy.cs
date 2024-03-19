@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
 
         _healthSystem.OnHealthChange += HealthSystem_OnHealthChange;
+
         if (EnemyList == null)
         {
             EnemyList = new List<Enemy>
@@ -38,11 +39,15 @@ public class Enemy : MonoBehaviour
             EnemyList.Add(this);
         }
     }
-    void Update()
+    private void FixedUpdate()
     {
+        Movement();
+    }
+    private void Movement()
+    {
+        _rigidbody.MovePosition(Vector2.MoveTowards(transform.position, _player.transform.position, _enemySO.Speed * Time.deltaTime));
         //transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, _enemySO.Speed * Time.deltaTime);
         //_rigidbody.MovePosition((Vector2)transform.position + (_enemySO.Speed * Time.deltaTime * _player.transform.position));
-        _rigidbody.MovePosition(Vector2.MoveTowards(transform.position, _player.transform.position, _enemySO.Speed * Time.deltaTime));
     }
 
     public void TakeDamage()
@@ -78,31 +83,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public static Enemy GetClosest(Vector2 position, float maxRange)
-    {
-        Enemy closest = null;
-        if (EnemyList != null)
-        {
-            foreach (Enemy enemy in EnemyList)
-            {
-                if (Vector2.Distance(position, enemy.GetPosition()) <= maxRange)
-                {
-                    if (closest == null)
-                    {
-                        closest = enemy;
-                    }
-                    else
-                    {
-                        if (Vector2.Distance(position, enemy.GetPosition()) < Vector2.Distance(position, closest.GetPosition()))
-                        {
-                            closest = enemy;
-                        }
-                    }
-                }
-            }
-        }
-        return closest;
-    }
     public Vector3 GetPosition()
     {
         return transform.position;
