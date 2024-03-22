@@ -9,7 +9,7 @@ public class SlowBullet : BulletScript
     {
         if (collision.TryGetComponent<Enemy>(out var enemy))
         {
-            enemy.TakeDamage();
+            enemy.TakeDamage(Damage);
         }
     }
 }

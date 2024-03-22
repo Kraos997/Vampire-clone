@@ -50,3 +50,4 @@ MonoBehaviour:
   pfBullet: {fileID: 7984800337228972731, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
   pfVisualWarning: {fileID: 5017772132421888859, guid: 9e85084c8d352394db80af3699acd848, type: 3}
   pfSlowBullet: {fileID: 1016082914392116781, guid: 98289c4edb7ae31499a1ca5e60ceaa17, type: 3}
+  pfOrbitingProjectile: {fileID: 5157053400957123742, guid: dd8aeb425efb6ec44b7d23549a932456, type: 3}

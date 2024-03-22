@@ -7,6 +7,7 @@ public class BulletScript : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;
     private Vector3 _shootDir;
+    [field: SerializeField]public int Damage { get; private set; }
 
     public void Setup(Vector3 shootDir)
     {
@@ -24,7 +25,7 @@ public class BulletScript : MonoBehaviour
         if (collision.TryGetComponent<Enemy>(out var enemy))
         {
             Destroy(gameObject);
-            enemy.TakeDamage();
+            enemy.TakeDamage(Damage);
         }
     }
 }

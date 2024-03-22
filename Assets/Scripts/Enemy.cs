@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     //Reference Objects
     [SerializeField] private EnemySO _enemySO;
     private GameObject _player;
-    private PlayerScript _playerScript;
     private Rigidbody2D _rigidbody;
 
     //Health System
@@ -22,7 +21,6 @@ public class Enemy : MonoBehaviour
     {
         _healthSystem = new HealthSystem(_enemySO.MaxHealth);
         _player = GameObject.Find("Player");
-        _playerScript = _player.GetComponent<PlayerScript>();
         _rigidbody = GetComponent<Rigidbody2D>();
 
         _healthSystem.OnHealthChange += HealthSystem_OnHealthChange;
@@ -50,16 +48,16 @@ public class Enemy : MonoBehaviour
         //_rigidbody.MovePosition((Vector2)transform.position + (_enemySO.Speed * Time.deltaTime * _player.transform.position));
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
         //int randomDamage = Random.Range(_playerScript.Damage, _playerScript.Damage + 100);
         //Take Damage
-        _healthSystem.Damage(_playerScript.Damage);
+        _healthSystem.Damage(damage);
         //Debug.Log(_healthSystem.GetHealth());
 
         //Damage Popup
         bool isCriticalHit = Random.Range(0, 100) < 30;
-        DamagePopup.Create(this.transform.position, _playerScript.Damage, isCriticalHit);
+        DamagePopup.Create(this.transform.position, damage, isCriticalHit);
     }
 
     public int DealDamage()

@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 350112695293769271, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
+      propertyPath: m_Radius
+      value: 0.20178843
+      objectReference: {fileID: 0}
+    - target: {fileID: 350112695293769271, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.68859154
+      objectReference: {fileID: 0}
+    - target: {fileID: 350112695293769271, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0020584166
+      objectReference: {fileID: 0}
     - target: {fileID: 2351484660911104589, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -139,3 +151,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 3
+  <Damage>k__BackingField: 5
