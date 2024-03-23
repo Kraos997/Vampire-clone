@@ -51,3 +51,4 @@ MonoBehaviour:
   pfVisualWarning: {fileID: 5017772132421888859, guid: 9e85084c8d352394db80af3699acd848, type: 3}
   pfSlowBullet: {fileID: 1016082914392116781, guid: 98289c4edb7ae31499a1ca5e60ceaa17, type: 3}
   pfOrbitingProjectile: {fileID: 5157053400957123742, guid: dd8aeb425efb6ec44b7d23549a932456, type: 3}
+  pfShieldProjectile: {fileID: 3797384466288286753, guid: 548367c583e5d8c4e93a922e12b9e812, type: 3}

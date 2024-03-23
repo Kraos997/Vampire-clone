@@ -25,4 +25,5 @@ public class GameAssets : MonoBehaviour
     public Transform pfVisualWarning;
     public Transform pfSlowBullet;
     public Transform pfOrbitingProjectile;
+    public Transform pfShieldProjectile;
 }

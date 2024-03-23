@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class OrbitingProjectile : MonoBehaviour
+public class ShieldProjectile : MonoBehaviour
 {
     private GameObject _centerObject;
     [SerializeField] private float _radius = 2f, _speed = 2f;
-    [SerializeField] private int _damage = 8;
     private float _angle;
 
     private void Start()
@@ -23,21 +23,19 @@ public class OrbitingProjectile : MonoBehaviour
         float x = _centerObject.transform.position.x + Mathf.Cos(_angle) * _radius;
         float y = _centerObject.transform.position.y + Mathf.Sin(_angle) * _radius;
 
-        Vector3 current = new (x, y);
+        Vector3 current = new(x, y);
         transform.position = current;
+        float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+        transform.RotateAround(_centerObject.transform.position, Vector3.up, _speed * Time.deltaTime);
 
         _angle += _speed * Time.deltaTime;
     }
 
-    public void ChangeAngle(float angle)
-    {
-        _angle = angle;
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Enemy>(out var enemy))
+        if (collision.TryGetComponent<BulletScript>(out var enemy))
         {
-            enemy.TakeDamage((int)_damage);
+
         }
     }
 }
