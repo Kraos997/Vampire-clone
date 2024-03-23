@@ -7,7 +7,7 @@ using System;
 public class PlayerShootProjectile : MonoBehaviour
 {
     [SerializeField] private PlayerAimWeapon playerAimWeapon;
-    [SerializeField] private int _bulletCount, _projectileCount;
+    [SerializeField] private int _bulletCount, _orbitingProjectileCount, _shieldProjectileCount;
 
     private void Awake()
     {
@@ -53,35 +53,10 @@ public class PlayerShootProjectile : MonoBehaviour
         bulletTransform.GetComponent<SlowBullet>().Setup(shootDir.normalized);
     }
 
-    /*
     private void OrbitingProjectileSpawn()
     {
-        int piece = 50;
-        for (int i = 0; i < piece; i++)
-        {
-            float circleAngle = Mathf.PI * 2 / piece;
-            float circleAngleTemp = circleAngle * i;
-            if (i % 2 == 0)
-            {
-                float angle = circleAngle / _projectileCount;
-                for (int j = 0; j < _projectileCount; j++)
-                {
-                    float angleTemp = angle * j;
-                    Transform orbitingProjectileTransform = Instantiate(GameAssets.I.pfOrbitingProjectile, transform.position, Quaternion.identity);
-
-                    orbitingProjectileTransform.GetComponent<OrbitingProjectile>().ChangeAngle(circleAngleTemp + angleTemp);
-                }
-            }
-
-        }
-
-    }
-    */
-    
-    private void OrbitingProjectileSpawn()
-    {
-        float angle = Mathf.Deg2Rad * 360f / _projectileCount;
-        for (int i = 0; i < _projectileCount; i++)
+        float angle = Mathf.Deg2Rad * 360f / _orbitingProjectileCount;
+        for (int i = 0; i < _orbitingProjectileCount; i++)
         {
             float angleTemp = angle * i;
             Transform orbitingProjectileTransform = Instantiate(GameAssets.I.pfOrbitingProjectile, transform.position, Quaternion.identity);
@@ -89,9 +64,25 @@ public class PlayerShootProjectile : MonoBehaviour
             orbitingProjectileTransform.GetComponent<OrbitingProjectile>().ChangeAngle(angleTemp);
         }
     }
-    
+
     private void ShieldProjectileSpawn()
     {
-        Instantiate(GameAssets.I.pfShieldProjectile, transform.position, Quaternion.identity); 
+        int piece = 1;
+        for (int i = 0; i < piece; i++)
+        {
+            float circleAngle = Mathf.PI * 2 / piece;
+            float circleAngleTemp = circleAngle * i;
+            if (i % 2 == 0)
+            {
+                float angle = circleAngle / _shieldProjectileCount;
+                for (int j = 0; j < _shieldProjectileCount; j++)
+                {
+                    float angleTemp = angle * j;
+                    Transform shieldProjectileTransform = Instantiate(GameAssets.I.pfShieldProjectile, transform.position, Quaternion.identity);
+
+                    shieldProjectileTransform.GetComponent<ShieldProjectile>().ChangeAngle(circleAngleTemp + angleTemp);
+                }
+            }
+        }
     }
 }

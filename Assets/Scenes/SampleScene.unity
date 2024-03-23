@@ -1340,7 +1340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAimWeapon: {fileID: 1286199716}
   _bulletCount: 3
-  _projectileCount: 12
+  _orbitingProjectileCount: 10
+  _shieldProjectileCount: 10
 --- !u!70 &1286199718
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

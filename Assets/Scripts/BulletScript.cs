@@ -5,19 +5,19 @@ using CodeMonkey.Utils;
 
 public class BulletScript : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 1f;
-    private Vector3 _shootDir;
-    [field: SerializeField]public int Damage { get; private set; }
+    [SerializeField] private float _moveSpeed;
+    public Vector3 ShootDir {  get; private set; }
+    [field: SerializeField] public int Damage { get; private set; }
 
     public void Setup(Vector3 shootDir)
     {
-        this._shootDir = shootDir;
+        this.ShootDir = shootDir;
         transform.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVectorFloat(shootDir));
     }
 
     void Update()
     {
-        transform.position += _moveSpeed * Time.deltaTime * _shootDir;
+        transform.position += _moveSpeed * Time.deltaTime * ShootDir;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
