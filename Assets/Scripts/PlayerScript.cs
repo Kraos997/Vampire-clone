@@ -18,7 +18,6 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] private GameInput _gameInput;
     [SerializeField] private LayerMask _statueLayer;
-    [SerializeField] private Transform _itemHoldPoint;
 
     private Vector3 _lastInteractDir;
     private BaseStatue _selectedStatue;

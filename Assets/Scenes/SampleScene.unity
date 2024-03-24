@@ -1307,7 +1307,6 @@ MonoBehaviour:
   _statueLayer:
     serializedVersion: 2
     m_Bits: 8
-  _itemHoldPoint: {fileID: 0}
   _pfHealthBar: {fileID: 1169829904799166221, guid: f54de39468bfb3b4d9e3115deee5af07, type: 3}
   _enemySO: {fileID: 11400000, guid: f6970bb43f1dc3e40977874522a86ca6, type: 2}
   <MaxHealth>k__BackingField: 100

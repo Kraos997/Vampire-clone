@@ -21,6 +21,7 @@ public class GameAssets : MonoBehaviour
     public Transform pfBullet;
     public Transform pfSlowBullet;
     public Transform pfScourgeBullet;
+    public Transform pfMiniScourgeBullet;
 
     //Enemys
     public Transform pfEnemy1;
