@@ -1325,7 +1325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6261b7b44f58aa94cbe1798c7ad9f087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletCooldown: 0.5
+  _basicBulletCooldown: 1
+  _slowBulletCooldown: 3
+  _scourgeBulletCooldown: 5
 --- !u!114 &1286199717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,8 +1342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAimWeapon: {fileID: 1286199716}
   _bulletCount: 3
-  _orbitingProjectileCount: 10
-  _shieldProjectileCount: 10
+  _orbitingProjectileCount: 5
+  _spinningSwordCount: 5
 --- !u!70 &1286199718
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

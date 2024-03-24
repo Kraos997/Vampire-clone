@@ -17,13 +17,20 @@ public class GameAssets : MonoBehaviour
             return _i;
         }
     }
+    //Bullets
+    public Transform pfBullet;
+    public Transform pfSlowBullet;
+    public Transform pfScourgeBullet;
 
-    public Transform pfDamagePopup;
+    //Enemys
     public Transform pfEnemy1;
     public Transform pfEnemySlow;
-    public Transform pfBullet;
-    public Transform pfVisualWarning;
-    public Transform pfSlowBullet;
+
+    //Weapons
     public Transform pfOrbitingProjectile;
-    public Transform pfShieldProjectile;
+    public Transform pfSpinningSword;
+
+    //VFX 
+    public Transform pfVisualWarning;
+    public Transform pfDamagePopup;
 }

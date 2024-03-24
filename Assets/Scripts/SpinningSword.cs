@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.UIElements;
 
-public class ShieldProjectile : MonoBehaviour
+public class SpinningSword : MonoBehaviour
 {
     private GameObject _centerObject;
     [SerializeField] private float _radius, _speed;

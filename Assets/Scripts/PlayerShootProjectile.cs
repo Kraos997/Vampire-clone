@@ -7,22 +7,15 @@ using System;
 public class PlayerShootProjectile : MonoBehaviour
 {
     [SerializeField] private PlayerAimWeapon playerAimWeapon;
-    [SerializeField] private int _bulletCount, _orbitingProjectileCount, _shieldProjectileCount;
+    [SerializeField] private int _bulletCount, _orbitingProjectileCount, _spinningSwordCount;
 
     private void Awake()
     {
-        GetComponent<PlayerAimWeapon>().OnShoot += PlayerShootProjectile_OnShoot;
         OrbitingProjectileSpawn();
-        ShieldProjectileSpawn();
+        SpinningSwordSpawn();
     }
 
-    private void PlayerShootProjectile_OnShoot(object sender, PlayerAimWeapon.OnShootEventArgs e)
-    {
-        BasicProjectile(e);
-        SlowProjectile(e);
-    }
-
-    private void BasicProjectile(PlayerAimWeapon.OnShootEventArgs e)
+    public void BasicBullet(Vector3 shootPosition, Vector3 aimEndPointPosition)
     {
         int angle = 0;
         for (int i = 1; i < _bulletCount + 1; i++)
@@ -38,18 +31,18 @@ public class PlayerShootProjectile : MonoBehaviour
                 angleTemp = -angle;
             }
 
-            Transform bulletTransform = Instantiate(GameAssets.I.pfBullet, e.aimEndPointPosition, Quaternion.identity);
+            Transform bulletTransform = Instantiate(GameAssets.I.pfBullet, aimEndPointPosition, Quaternion.identity);
 
-            Vector3 shootDir = Quaternion.Euler(0, 0, angleTemp) * (e.shootPosition - e.aimEndPointPosition);
+            Vector3 shootDir = Quaternion.Euler(0, 0, angleTemp) * (shootPosition - aimEndPointPosition);
             bulletTransform.GetComponent<BulletScript>().Setup(shootDir.normalized);
         }
     }
 
-    private void SlowProjectile(PlayerAimWeapon.OnShootEventArgs e)
+    public void SlowBullet(Vector3 shootPosition, Vector3 aimEndPointPosition)
     {
-        Transform bulletTransform = Instantiate(GameAssets.I.pfSlowBullet, e.aimEndPointPosition, Quaternion.identity);
+        Transform bulletTransform = Instantiate(GameAssets.I.pfSlowBullet, aimEndPointPosition, Quaternion.identity);
 
-        Vector3 shootDir = (e.shootPosition - e.aimEndPointPosition);
+        Vector3 shootDir = (shootPosition - aimEndPointPosition);
         bulletTransform.GetComponent<SlowBullet>().Setup(shootDir.normalized);
     }
 
@@ -65,7 +58,7 @@ public class PlayerShootProjectile : MonoBehaviour
         }
     }
 
-    private void ShieldProjectileSpawn()
+    private void SpinningSwordSpawn()
     {
         int piece = 1;
         for (int i = 0; i < piece; i++)
@@ -74,15 +67,23 @@ public class PlayerShootProjectile : MonoBehaviour
             float circleAngleTemp = circleAngle * i;
             if (i % 2 == 0)
             {
-                float angle = circleAngle / _shieldProjectileCount;
-                for (int j = 0; j < _shieldProjectileCount; j++)
+                float angle = circleAngle / _spinningSwordCount;
+                for (int j = 0; j < _spinningSwordCount; j++)
                 {
                     float angleTemp = angle * j;
-                    Transform shieldProjectileTransform = Instantiate(GameAssets.I.pfShieldProjectile, transform.position, Quaternion.identity);
+                    Transform spinningSwordTransform = Instantiate(GameAssets.I.pfSpinningSword, transform.position, Quaternion.identity);
 
-                    shieldProjectileTransform.GetComponent<ShieldProjectile>().ChangeAngle(circleAngleTemp + angleTemp);
+                    spinningSwordTransform.GetComponent<SpinningSword>().ChangeAngle(circleAngleTemp + angleTemp);
                 }
             }
         }
+    }
+
+    public void ScourgeBullet(Vector3 shootPosition, Vector3 aimEndPointPosition)
+    {
+        Transform bulletTransform = Instantiate(GameAssets.I.pfScourgeBullet, aimEndPointPosition, Quaternion.identity);
+
+        Vector3 shootDir = (shootPosition - aimEndPointPosition);
+        bulletTransform.GetComponent<ScourgeBullet>().Setup(shootDir.normalized);
     }
 }

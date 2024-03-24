@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ae1c47f890ad4294a8bf6ac9bdce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfDamagePopup: {fileID: 7398952752517938429, guid: db18d833623b69f43a0fecc6ceeb14b0, type: 3}
+  pfBullet: {fileID: 7984800337228972731, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
+  pfSlowBullet: {fileID: 1016082914392116781, guid: 98289c4edb7ae31499a1ca5e60ceaa17, type: 3}
+  pfScourgeBullet: {fileID: 3854279468875686320, guid: 4fe9615778f28ac4a806b49e174423b7, type: 3}
   pfEnemy1: {fileID: 182900885982537687, guid: a3d13d8e673382b439c355303b472c75, type: 3}
   pfEnemySlow: {fileID: 6367539484616110073, guid: a24158c6c93a0db4e8b3aba4c7bee8ea, type: 3}
-  pfBullet: {fileID: 7984800337228972731, guid: 9a6f66947d25770409d5a218a19639cb, type: 3}
-  pfVisualWarning: {fileID: 5017772132421888859, guid: 9e85084c8d352394db80af3699acd848, type: 3}
-  pfSlowBullet: {fileID: 1016082914392116781, guid: 98289c4edb7ae31499a1ca5e60ceaa17, type: 3}
   pfOrbitingProjectile: {fileID: 5157053400957123742, guid: dd8aeb425efb6ec44b7d23549a932456, type: 3}
-  pfShieldProjectile: {fileID: 3797384466288286753, guid: 548367c583e5d8c4e93a922e12b9e812, type: 3}
+  pfSpinningSword: {fileID: 3797384466288286753, guid: 548367c583e5d8c4e93a922e12b9e812, type: 3}
+  pfVisualWarning: {fileID: 5017772132421888859, guid: 9e85084c8d352394db80af3699acd848, type: 3}
+  pfDamagePopup: {fileID: 7398952752517938429, guid: db18d833623b69f43a0fecc6ceeb14b0, type: 3}

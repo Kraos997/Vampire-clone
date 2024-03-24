@@ -94,9 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3797384466288286753}
   - component: {fileID: 6181795735108822507}
-  - component: {fileID: 6708197057803190328}
+  - component: {fileID: 3329625710008134686}
   m_Layer: 2
-  m_Name: Shield Projectile
+  m_Name: Spinning Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +163,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6586937, y: 0.1031625}
   m_EdgeRadius: 0
---- !u!114 &6708197057803190328
+--- !u!114 &3329625710008134686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,9 +172,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7474230616221986941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2a4e0cac1c95d43a708b12e0be381c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6db00bc7fc197e045a27ceedcdc65a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 1.3
-  _speed: 3
+  _speed: 2
   _damage: 15
