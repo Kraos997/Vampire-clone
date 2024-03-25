@@ -30,6 +30,7 @@ public class GameAssets : MonoBehaviour
     //Weapons
     public Transform pfOrbitingProjectile;
     public Transform pfSpinningSword;
+    public Transform pfAOEAttack;
 
     //VFX 
     public Transform pfVisualWarning;

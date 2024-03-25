@@ -52,5 +52,6 @@ MonoBehaviour:
   pfEnemySlow: {fileID: 6367539484616110073, guid: a24158c6c93a0db4e8b3aba4c7bee8ea, type: 3}
   pfOrbitingProjectile: {fileID: 5157053400957123742, guid: dd8aeb425efb6ec44b7d23549a932456, type: 3}
   pfSpinningSword: {fileID: 3797384466288286753, guid: 548367c583e5d8c4e93a922e12b9e812, type: 3}
+  pfAOEAttack: {fileID: 3210895794170620236, guid: 686ce127b23364940bd982c53dca5a03, type: 3}
   pfVisualWarning: {fileID: 5017772132421888859, guid: 9e85084c8d352394db80af3699acd848, type: 3}
   pfDamagePopup: {fileID: 7398952752517938429, guid: db18d833623b69f43a0fecc6ceeb14b0, type: 3}

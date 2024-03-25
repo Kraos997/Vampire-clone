@@ -7,11 +7,13 @@ using CodeMonkey.Utils;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
-    private PlayerShootProjectile _playerShootProjectileScript;
+    private PlayerManageAttacking _playeManageAttackingScript;
     private delegate void ShootDelegate(Vector3 shootPosition, Vector3 aimEndPointPosition);
+    private delegate void SpawnDelegate(Vector3 position);
     ShootDelegate ScourgeBulletDelegate;
     ShootDelegate BasicBulletDelegate;
     ShootDelegate SlowBulletDelegate;
+    SpawnDelegate AOEAttackDelegate;
 
     private Vector3 aimEndPointPosition;
     private Vector3 shootPosition;
@@ -19,17 +21,22 @@ public class PlayerAimWeapon : MonoBehaviour
     private Transform aimPointTransform;
     private Transform aimEndPointTransform;
 
-    [SerializeField] private float _basicBulletCooldown, _slowBulletCooldown, _scourgeBulletCooldown;
-    private float _canShootBasicBulletTimer, _canShootSlowBulletTimer, _canShootScourgeBulletTimer;
+    [SerializeField] private float _basicBulletCooldown, _slowBulletCooldown, _scourgeBulletCooldown, _aoeAttackCooldown;
+    private float _canShootBasicBulletTimer, _canShootSlowBulletTimer, _canShootScourgeBulletTimer, _aoeAttackTimer;
 
     private void Awake()
     {
         aimPointTransform = transform.Find("AimPoint");
         aimEndPointTransform = aimPointTransform.Find("AimEndPointPosition");
-        _playerShootProjectileScript = GetComponent<PlayerShootProjectile>();
-        ScourgeBulletDelegate = _playerShootProjectileScript.ScourgeBullet;
-        BasicBulletDelegate = _playerShootProjectileScript.BasicBullet;
-        SlowBulletDelegate = _playerShootProjectileScript.SlowBullet;
+        _playeManageAttackingScript = GetComponent<PlayerManageAttacking>();
+
+        ScourgeBulletDelegate = _playeManageAttackingScript.ScourgeBullet;
+        BasicBulletDelegate = _playeManageAttackingScript.BasicBullet;
+        SlowBulletDelegate = _playeManageAttackingScript.SlowBullet;
+        AOEAttackDelegate = _playeManageAttackingScript.AOEAttackSpawn;
+
+        _playeManageAttackingScript.SpinningSwordSpawn();
+        _playeManageAttackingScript.OrbitingProjectileSpawn();
     }
 
     private void Update()
@@ -50,6 +57,8 @@ public class PlayerAimWeapon : MonoBehaviour
             Shoot(ref _canShootBasicBulletTimer, ref _basicBulletCooldown, BasicBulletDelegate);
 
             Shoot(ref _canShootSlowBulletTimer, ref _slowBulletCooldown, SlowBulletDelegate);
+
+            Spawn(ref _aoeAttackTimer, ref _aoeAttackCooldown, AOEAttackDelegate);
         }
     }
 
@@ -64,6 +73,20 @@ public class PlayerAimWeapon : MonoBehaviour
         {
             timer = cooldown;
             shootDelegate(shootPosition, aimEndPointPosition);
+        }
+    }
+
+    private void Spawn(ref float timer, ref float cooldown, SpawnDelegate spawnDelegate)
+    {
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+
+        if (timer <= 0)
+        {
+            timer = cooldown;
+            spawnDelegate(shootPosition);
         }
     }
 }

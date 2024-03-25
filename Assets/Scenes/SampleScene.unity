@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1286199714}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 9
+    OrthographicSize: 12
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -836,7 +836,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1264,7 +1264,7 @@ GameObject:
   - component: {fileID: 1286199714}
   - component: {fileID: 1286199715}
   - component: {fileID: 1286199716}
-  - component: {fileID: 1286199717}
+  - component: {fileID: 1286199720}
   - component: {fileID: 1286199718}
   - component: {fileID: 1286199719}
   m_Layer: 2
@@ -1327,22 +1327,7 @@ MonoBehaviour:
   _basicBulletCooldown: 1
   _slowBulletCooldown: 3
   _scourgeBulletCooldown: 5
---- !u!114 &1286199717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286199713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803256331a465b045aa48d07ec00b781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAimWeapon: {fileID: 1286199716}
-  _bulletCount: 3
-  _orbitingProjectileCount: 5
-  _spinningSwordCount: 5
+  _aoeAttackCooldown: 7
 --- !u!70 &1286199718
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1405,6 +1390,22 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &1286199720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286199713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375b15b9985ceb6499ac8288ddc021c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAimWeapon: {fileID: 1286199716}
+  _bulletCount: 3
+  _orbitingProjectileCount: 4
+  _spinningSwordCount: 2
 --- !u!1 &1309941630
 GameObject:
   m_ObjectHideFlags: 0

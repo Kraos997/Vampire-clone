@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ScourgeBullet : SlowBullet
+public class ScourgeBullet : BulletScript
 {
     private void Start()
     {
@@ -16,6 +16,14 @@ public class ScourgeBullet : SlowBullet
         {
             yield return new WaitForSeconds(0.3f);
             Instantiate(GameAssets.I.pfMiniScourgeBullet, transform.position, Quaternion.identity);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Enemy>(out var enemy))
+        {
+            enemy.TakeDamage(Damage);
         }
     }
 }

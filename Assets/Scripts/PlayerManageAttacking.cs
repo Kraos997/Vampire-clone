@@ -4,16 +4,10 @@ using UnityEngine;
 using CodeMonkey.Utils;
 using System;
 
-public class PlayerShootProjectile : MonoBehaviour
+public class PlayerManageAttacking : MonoBehaviour
 {
     [SerializeField] private PlayerAimWeapon playerAimWeapon;
     [SerializeField] private int _bulletCount, _orbitingProjectileCount, _spinningSwordCount;
-
-    private void Awake()
-    {
-        OrbitingProjectileSpawn();
-        SpinningSwordSpawn();
-    }
 
     public void BasicBullet(Vector3 shootPosition, Vector3 aimEndPointPosition)
     {
@@ -46,7 +40,7 @@ public class PlayerShootProjectile : MonoBehaviour
         bulletTransform.GetComponent<SlowBullet>().Setup(shootDir.normalized);
     }
 
-    private void OrbitingProjectileSpawn()
+    public void OrbitingProjectileSpawn()
     {
         float angle = Mathf.Deg2Rad * 360f / _orbitingProjectileCount;
         for (int i = 0; i < _orbitingProjectileCount; i++)
@@ -58,7 +52,7 @@ public class PlayerShootProjectile : MonoBehaviour
         }
     }
 
-    private void SpinningSwordSpawn()
+    public void SpinningSwordSpawn()
     {
         int piece = 1;
         for (int i = 0; i < piece; i++)
@@ -85,5 +79,10 @@ public class PlayerShootProjectile : MonoBehaviour
 
         Vector3 shootDir = (shootPosition - aimEndPointPosition);
         bulletTransform.GetComponent<ScourgeBullet>().Setup(shootDir.normalized);
+    }
+
+    public void AOEAttackSpawn(Vector3 position)
+    {
+        Instantiate(GameAssets.I.pfAOEAttack, position, Quaternion.identity);
     }
 }
