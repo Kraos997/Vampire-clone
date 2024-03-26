@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
-public class PlayerScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
-
-    public static PlayerScript Instance { get; private set; }
+    public static Player Instance { get; private set; }
 
     public event EventHandler<OnSelectedStatueChangedEventArgs> OnSelectedStatueChanged;
-    public static event EventHandler OnLevelUp;
     public class OnSelectedStatueChangedEventArgs : EventArgs
     {
         public BaseStatue SelectedStatue;
@@ -27,14 +26,11 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private EnemySO _enemySO;
 
     //Timer values
-    private readonly float _immunityTime = 1f;
-    private float _lastAttackTime;
+    public float ImmunityTime { get; private set; } = 1f;
 
-    [field: SerializeField] public int MaxHealth { get; private set; } = 100;
+    private readonly int _maxHealth = 100;
     public int Damage = 5;
     [field: SerializeField] public int Speed { get; private set; } = 5;
-    public static int Experience = 0;
-    [field: SerializeField] public static int Level { get; private set; } = 1;
 
     private void Awake()
     {
@@ -49,10 +45,7 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         // Set data
-        _healthSystem = new(MaxHealth);
-        Experience = 0;
-        Level = 1;
-        ExperienceCap = 100;
+        _healthSystem = new(_maxHealth);
         
         // Events
         _gameInput.OnInteractAction += GameInput_OnInteractAction;
@@ -80,7 +73,6 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerMovement();
         Interactions();
-        LevelSystem();
     }
     private void Interactions()
     {
@@ -175,29 +167,9 @@ public class PlayerScript : MonoBehaviour
         healthBar.Setup(_healthSystem);
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    public void TakeDamage(int damage)
     {
-        if (!(Time.time - _lastAttackTime < _immunityTime))
-        {
-            if (collision.gameObject.TryGetComponent(out Enemy enemy))
-            {
-                _healthSystem.Damage(enemy.DealDamage());
-                //Debug.Log(_healthSystem.GetHealth());
-                _lastAttackTime = Time.time;
-            }
-        }
-    }
-    public static int ExperienceCap = 100;
-    private void LevelSystem()
-    {
-        if(Experience > ExperienceCap)
-        {
-            Experience -= ExperienceCap;
-            ExperienceCap += 25;
-            Level += 1;
-            OnLevelUp?.Invoke(this, EventArgs.Empty);
-            //Debug.Log("Level: " +Level);
-        }
+        _healthSystem.Damage(damage);
     }
 
     private void SetSelectedStatue(BaseStatue selectedStatue)

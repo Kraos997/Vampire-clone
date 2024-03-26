@@ -15,8 +15,8 @@ public class ProgressBar : MonoBehaviour
 
     void GetCurrentFill()
     {
-        float experience = PlayerScript.Experience;
-        float experienceCap = PlayerScript.ExperienceCap;
+        float experience = LevelSystem.Instance.GetExperience();
+        float experienceCap = LevelSystem.Instance.GetExperienceCap();
         float fillAmount = experience / experienceCap;
         _mask.fillAmount = fillAmount;
     }

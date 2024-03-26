@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
 {
     //Reference Objects
     [SerializeField] private EnemySO _enemySO;
-    private GameObject _player;
     private Rigidbody2D _rigidbody;
+    private float _lastAttackTime;
 
     //Health System
     private HealthSystem _healthSystem;
@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _healthSystem = new HealthSystem(_enemySO.MaxHealth);
-        _player = GameObject.Find("Player");
         _rigidbody = GetComponent<Rigidbody2D>();
 
         _healthSystem.OnHealthChange += HealthSystem_OnHealthChange;
@@ -43,17 +42,12 @@ public class Enemy : MonoBehaviour
     }
     private void Movement()
     {
-        _rigidbody.MovePosition(Vector2.MoveTowards(transform.position, _player.transform.position, _enemySO.Speed * Time.deltaTime));
-        //transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, _enemySO.Speed * Time.deltaTime);
-        //_rigidbody.MovePosition((Vector2)transform.position + (_enemySO.Speed * Time.deltaTime * _player.transform.position));
+        _rigidbody.MovePosition(Vector2.MoveTowards(transform.position, Player.Instance.transform.position, _enemySO.Speed * Time.deltaTime));
     }
 
     public void TakeDamage(int damage)
     {
-        //int randomDamage = Random.Range(_playerScript.Damage, _playerScript.Damage + 100);
-        //Take Damage
         _healthSystem.Damage(damage);
-        //Debug.Log(_healthSystem.GetHealth());
 
         //Damage Popup
         bool isCriticalHit = Random.Range(0, 100) < 30;
@@ -65,14 +59,25 @@ public class Enemy : MonoBehaviour
         return _enemySO.Damage;
     }
 
-    private void Death()
+    public virtual void Death()
     {
         EnemyList.Remove(this);
         Destroy(gameObject);
-        PlayerScript.Experience += _enemySO.Experience;
-        //Debug.Log("exp: " + PlayerScript.Experience);
+        LevelSystem.Instance.IncreaseExperience(_enemySO.Experience);
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        int damage = _enemySO.Damage;
+        if (!(Time.time - _lastAttackTime < Player.Instance.ImmunityTime))
+        {
+            if (collision.collider.TryGetComponent<Player>(out var player))
+            {
+                player.TakeDamage((int)damage);
+                _lastAttackTime = Time.time;
+            }
+        }
+    }
     private void HealthSystem_OnHealthChange(object sender, System.EventArgs e)
     {
         if(_healthSystem.GetHealth() == 0)

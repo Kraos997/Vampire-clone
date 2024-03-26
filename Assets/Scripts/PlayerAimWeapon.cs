@@ -13,7 +13,6 @@ public class PlayerAimWeapon : MonoBehaviour
     ShootDelegate ScourgeBulletDelegate;
     ShootDelegate BasicBulletDelegate;
     ShootDelegate SlowBulletDelegate;
-    SpawnDelegate AOEAttackDelegate;
 
     private Vector3 aimEndPointPosition;
     private Vector3 shootPosition;
@@ -21,8 +20,8 @@ public class PlayerAimWeapon : MonoBehaviour
     private Transform aimPointTransform;
     private Transform aimEndPointTransform;
 
-    [SerializeField] private float _basicBulletCooldown, _slowBulletCooldown, _scourgeBulletCooldown, _aoeAttackCooldown;
-    private float _canShootBasicBulletTimer, _canShootSlowBulletTimer, _canShootScourgeBulletTimer, _aoeAttackTimer;
+    [SerializeField] private float _basicBulletCooldown, _slowBulletCooldown, _scourgeBulletCooldown;
+    private float _canShootBasicBulletTimer, _canShootSlowBulletTimer, _canShootScourgeBulletTimer;
 
     private void Awake()
     {
@@ -33,7 +32,6 @@ public class PlayerAimWeapon : MonoBehaviour
         ScourgeBulletDelegate = _playeManageAttackingScript.ScourgeBullet;
         BasicBulletDelegate = _playeManageAttackingScript.BasicBullet;
         SlowBulletDelegate = _playeManageAttackingScript.SlowBullet;
-        AOEAttackDelegate = _playeManageAttackingScript.AOEAttackSpawn;
 
         _playeManageAttackingScript.SpinningSwordSpawn();
         _playeManageAttackingScript.OrbitingProjectileSpawn();
@@ -57,8 +55,6 @@ public class PlayerAimWeapon : MonoBehaviour
             Shoot(ref _canShootBasicBulletTimer, ref _basicBulletCooldown, BasicBulletDelegate);
 
             Shoot(ref _canShootSlowBulletTimer, ref _slowBulletCooldown, SlowBulletDelegate);
-
-            Spawn(ref _aoeAttackTimer, ref _aoeAttackCooldown, AOEAttackDelegate);
         }
     }
 

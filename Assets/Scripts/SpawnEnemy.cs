@@ -11,7 +11,6 @@ public class SpawnEnemy : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnObjectOverTime());
-        //SpawnObjects(1.5f);
     }
 
     IEnumerator SpawnObjectOverTime()
@@ -27,18 +26,4 @@ public class SpawnEnemy : MonoBehaviour
             yield return new WaitForSeconds(_spawnCooldown);
         }
     }
-
-    /*private async void SpawnObjects(float spawnC)
-    {
-        while (true)
-        {
-            Vector2 randomPos = new(Random.Range(-arenaX, arenaY), Random.Range(-arenaY, arenaY));
-
-            Instantiate(visualWarning, randomPos, Quaternion.identity);
-            await Task.Delay(1000); //wait for visual warning to disapear
-
-            Instantiate(enemyPrefab, randomPos, Quaternion.identity);
-            await Task.Delay((int)spawnC * 1000);
-        }
-    }*/
 }

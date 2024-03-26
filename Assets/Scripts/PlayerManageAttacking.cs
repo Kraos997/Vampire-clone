@@ -80,9 +80,4 @@ public class PlayerManageAttacking : MonoBehaviour
         Vector3 shootDir = (shootPosition - aimEndPointPosition);
         bulletTransform.GetComponent<ScourgeBullet>().Setup(shootDir.normalized);
     }
-
-    public void AOEAttackSpawn(Vector3 position)
-    {
-        Instantiate(GameAssets.I.pfAOEAttack, position, Quaternion.identity);
-    }
 }

@@ -10,10 +10,10 @@ public class SelectedStatue : MonoBehaviour
 
     private void Start()
     {
-        PlayerScript.Instance.OnSelectedStatueChanged += Player_OnSelectedStatueChanged;
+        Player.Instance.OnSelectedStatueChanged += Player_OnSelectedStatueChanged;
     }
 
-    private void Player_OnSelectedStatueChanged(object sender, PlayerScript.OnSelectedStatueChangedEventArgs e)
+    private void Player_OnSelectedStatueChanged(object sender, Player.OnSelectedStatueChangedEventArgs e)
     {
         if(e.SelectedStatue == baseStatue)
         {
