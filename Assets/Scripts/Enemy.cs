@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     //Reference Objects
     [SerializeField] private EnemySO _enemySO;
@@ -14,27 +14,13 @@ public class Enemy : MonoBehaviour
     //Health System
     private HealthSystem _healthSystem;
 
-    //Other
-    public static List<Enemy> EnemyList;
-    
     private void Awake()
     {
         _healthSystem = new HealthSystem(_enemySO.MaxHealth);
         _rigidbody = GetComponent<Rigidbody2D>();
 
         _healthSystem.OnHealthChange += HealthSystem_OnHealthChange;
-
-        if (EnemyList == null)
-        {
-            EnemyList = new List<Enemy>
-            {
-                this
-            };
-        }
-        else
-        {
-            EnemyList.Add(this);
-        }
+        Utils.ManageEnemyList(this.gameObject);
     }
     private void FixedUpdate()
     {
@@ -54,14 +40,9 @@ public class Enemy : MonoBehaviour
         DamagePopup.Create(this.transform.position, damage, isCriticalHit);
     }
 
-    public int DealDamage()
-    {
-        return _enemySO.Damage;
-    }
-
     public virtual void Death()
     {
-        EnemyList.Remove(this);
+        GameManager.EnemyList.Remove(this.gameObject);
         Destroy(gameObject);
         LevelSystem.Instance.IncreaseExperience(_enemySO.Experience);
     }
@@ -73,7 +54,7 @@ public class Enemy : MonoBehaviour
         {
             if (collision.collider.TryGetComponent<Player>(out var player))
             {
-                player.TakeDamage((int)damage);
+                player.TakeDamage(damage);
                 _lastAttackTime = Time.time;
             }
         }
@@ -84,10 +65,5 @@ public class Enemy : MonoBehaviour
         {
             Death();
         }
-    }
-
-    public Vector3 GetPosition()
-    {
-        return transform.position;
     }
 }

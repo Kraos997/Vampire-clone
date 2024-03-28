@@ -6,7 +6,6 @@ using System;
 
 public class PlayerManageAttacking : MonoBehaviour
 {
-    [SerializeField] private PlayerAimWeapon playerAimWeapon;
     [SerializeField] private int _bulletCount, _orbitingProjectileCount, _spinningSwordCount;
 
     public void BasicBullet(Vector3 shootPosition, Vector3 aimEndPointPosition)

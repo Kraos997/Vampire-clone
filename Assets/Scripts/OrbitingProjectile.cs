@@ -35,7 +35,7 @@ public class OrbitingProjectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Enemy>(out var enemy))
+        if (collision.TryGetComponent<IDamageable>(out var enemy))
         {
             enemy.TakeDamage((int)_damage);
         }

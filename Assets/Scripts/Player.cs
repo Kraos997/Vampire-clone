@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Player : MonoBehaviour
 {
@@ -25,11 +24,8 @@ public class Player : MonoBehaviour
     private HealthSystem _healthSystem;
     [SerializeField] private EnemySO _enemySO;
 
-    //Timer values
     public float ImmunityTime { get; private set; } = 1f;
-
     private readonly int _maxHealth = 100;
-    public int Damage = 5;
     [field: SerializeField] public int Speed { get; private set; } = 5;
 
     private void Awake()
@@ -39,7 +35,6 @@ public class Player : MonoBehaviour
             Debug.LogError("There is more than one Player instance");
         }
         Instance = this;
-
     }
 
     private void Start()
@@ -52,6 +47,12 @@ public class Player : MonoBehaviour
         _gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
 
         ManageHealth();
+    }
+
+    void Update()
+    {
+        PlayerMovement();
+        Interactions();
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -69,11 +70,7 @@ public class Player : MonoBehaviour
             _selectedStatue.InteractAlternate(this);
         }
     }
-    void Update()
-    {
-        PlayerMovement();
-        Interactions();
-    }
+
     private void Interactions()
     {
         Vector2 inputVector = _gameInput.GetMovementVectorNormalized();

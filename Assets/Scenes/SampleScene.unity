@@ -1307,7 +1307,6 @@ MonoBehaviour:
   _basicBulletCooldown: 1
   _slowBulletCooldown: 3
   _scourgeBulletCooldown: 5
-  _aoeAttackCooldown: 7
 --- !u!70 &1286199718
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1382,10 +1381,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375b15b9985ceb6499ac8288ddc021c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAimWeapon: {fileID: 1286199716}
-  _bulletCount: 3
-  _orbitingProjectileCount: 4
-  _spinningSwordCount: 2
+  _bulletCount: 5
+  _orbitingProjectileCount: 5
+  _spinningSwordCount: 5
 --- !u!114 &1286199721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1404,7 +1402,6 @@ MonoBehaviour:
     m_Bits: 8
   _pfHealthBar: {fileID: 1169829904799166221, guid: f54de39468bfb3b4d9e3115deee5af07, type: 3}
   _enemySO: {fileID: 11400000, guid: f6970bb43f1dc3e40977874522a86ca6, type: 2}
-  Damage: 5
   <Speed>k__BackingField: 5
 --- !u!114 &1286199722
 MonoBehaviour:
@@ -2177,10 +2174,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382ecdd49924c324098c844debfb4635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SpawnCooldown>k__BackingField: 0.2
   _enemyArray:
+  - {fileID: 6447050078834796311, guid: 05f8e61529d74514cbef5e6f99c823b0, type: 3}
   - {fileID: 182900885982537687, guid: a3d13d8e673382b439c355303b472c75, type: 3}
-  - {fileID: 6367539484616110073, guid: a24158c6c93a0db4e8b3aba4c7bee8ea, type: 3}
   - {fileID: 286352724878935965, guid: 2700bb84b0ed269458208249e91f0056, type: 3}
+  - {fileID: 6367539484616110073, guid: a24158c6c93a0db4e8b3aba4c7bee8ea, type: 3}
 --- !u!4 &2064913638
 Transform:
   m_ObjectHideFlags: 0

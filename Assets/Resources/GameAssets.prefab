@@ -50,6 +50,8 @@ MonoBehaviour:
   pfMiniScourgeBullet: {fileID: 5097468266937109654, guid: b4e30d9dd34be6c4dbaabbc949bc9ab5, type: 3}
   pfEnemy1: {fileID: 182900885982537687, guid: a3d13d8e673382b439c355303b472c75, type: 3}
   pfEnemySlow: {fileID: 6367539484616110073, guid: a24158c6c93a0db4e8b3aba4c7bee8ea, type: 3}
+  pfTurret: {fileID: 6447050078834796311, guid: 05f8e61529d74514cbef5e6f99c823b0, type: 3}
+  pfTurretBullet: {fileID: 1118612494981728676, guid: 7e61b342540ce004f9aafaaac5ba91d9, type: 3}
   pfOrbitingProjectile: {fileID: 5157053400957123742, guid: dd8aeb425efb6ec44b7d23549a932456, type: 3}
   pfSpinningSword: {fileID: 3797384466288286753, guid: 548367c583e5d8c4e93a922e12b9e812, type: 3}
   pfAOEAttack: {fileID: 3210895794170620236, guid: 686ce127b23364940bd982c53dca5a03, type: 3}

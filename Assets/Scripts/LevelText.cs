@@ -7,7 +7,7 @@ public class LevelText : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _levelText;
 
-    void Awake()
+    void Start()
     {
         _levelText = GetComponent<TextMeshProUGUI>();
         LevelSystem.OnLevelUp += PlayerScript_OnLevelUp;
@@ -21,7 +21,6 @@ public class LevelText : MonoBehaviour
 
     public void SetLevelText()
     {
-        float level = LevelSystem.Instance.GetLevel();
-        _levelText.SetText("Level: " + level);
+        _levelText.SetText("Level: " + LevelSystem.Instance.GetLevel());
     }
 }

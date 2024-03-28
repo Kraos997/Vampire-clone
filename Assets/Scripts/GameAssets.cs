@@ -17,22 +17,29 @@ public class GameAssets : MonoBehaviour
             return _i;
         }
     }
-    //Bullets
+
+    [Header("Bullets:")]
     public Transform pfBullet;
     public Transform pfSlowBullet;
     public Transform pfScourgeBullet;
     public Transform pfMiniScourgeBullet;
 
-    //Enemys
+    [Header("Enemys:")]
     public Transform pfEnemy1;
     public Transform pfEnemySlow;
 
-    //Weapons
+    [Header("Turrets:")]
+    public Transform pfTurret;
+
+    [Header("Turret Attacks:")]
+    public Transform pfTurretBullet;
+
+    [Header("Weapons:")]
     public Transform pfOrbitingProjectile;
     public Transform pfSpinningSword;
     public Transform pfAOEAttack;
 
-    //VFX 
+    [Header("VFX:")]
     public Transform pfVisualWarning;
     public Transform pfDamagePopup;
 }

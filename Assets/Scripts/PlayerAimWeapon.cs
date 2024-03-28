@@ -44,7 +44,7 @@ public class PlayerAimWeapon : MonoBehaviour
 
     private void HandleShooting()
     {
-        Enemy enemy = Utils.GetClosest(aimEndPointTransform.position, 15000f);
+        GameObject enemy = Utils.GetClosest(aimEndPointTransform.position, 15000f);
         if (enemy != null)
         {
             aimEndPointPosition = aimEndPointTransform.position;

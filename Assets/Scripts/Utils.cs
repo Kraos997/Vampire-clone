@@ -5,15 +5,14 @@ using UnityEngine;
 
 public static class Utils
 {
-    public static int ArenaX = 20;
-    public static Enemy GetClosest(Vector2 position, float maxRange)
+    public static GameObject GetClosest(Vector2 position, float maxRange)
     {
-        Enemy closest = null;
-        if (Enemy.EnemyList != null)
+        GameObject closest = null;
+        if (GameManager.EnemyList != null)
         {
-            foreach (Enemy enemy in Enemy.EnemyList)
+            foreach (GameObject enemy in GameManager.EnemyList)
             {
-                if (Vector2.Distance(position, enemy.GetPosition()) <= maxRange)
+                if (Vector2.Distance(position, enemy.transform.position) <= maxRange)
                 {
                     if (closest == null)
                     {
@@ -21,7 +20,7 @@ public static class Utils
                     }
                     else
                     {
-                        if (Vector2.Distance(position, enemy.GetPosition()) < Vector2.Distance(position, closest.GetPosition()))
+                        if (Vector2.Distance(position, enemy.transform.position) < Vector2.Distance(position, closest.transform.position))
                         {
                             closest = enemy;
                         }
@@ -32,4 +31,18 @@ public static class Utils
         return closest;
     }
 
+    public static void ManageEnemyList(GameObject thisGameObject)
+    {
+        if (GameManager.EnemyList == null)
+        {
+            GameManager.EnemyList = new List<GameObject>
+            {
+                thisGameObject
+            };
+        }
+        else
+        {
+            GameManager.EnemyList.Add(thisGameObject);
+        }
+    }
 }
