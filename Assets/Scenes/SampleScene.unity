@@ -866,7 +866,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.069, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,6 +998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 670964417}
   - component: {fileID: 670964416}
+  - component: {fileID: 670964418}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1032,6 +1033,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &670964418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670964415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b08ef7a60996cd47959d3eef5a2cf03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameInput: {fileID: 1866187414}
 --- !u!1 &721487869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,8 +1319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _basicBulletCooldown: 1
-  _slowBulletCooldown: 3
-  _scourgeBulletCooldown: 5
+  _slowBulletCooldown: 2
+  _scourgeBulletCooldown: 3
 --- !u!70 &1286199718
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1381,9 +1395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375b15b9985ceb6499ac8288ddc021c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletCount: 5
-  _orbitingProjectileCount: 5
-  _spinningSwordCount: 5
+  _bulletCount: 10
+  _orbitingProjectileCount: 10
+  _spinningSwordCount: 10
 --- !u!114 &1286199721
 MonoBehaviour:
   m_ObjectHideFlags: 0

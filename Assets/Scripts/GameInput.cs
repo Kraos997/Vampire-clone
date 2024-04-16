@@ -7,6 +7,7 @@ public class GameInput : MonoBehaviour
 {
     public event EventHandler OnInteractAction;
     public event EventHandler OnInteractAlternateAction;
+    public event EventHandler OnSlowTime;
 
     private PlayerInputActions _playerInputActions;
 
@@ -17,6 +18,12 @@ public class GameInput : MonoBehaviour
 
         _playerInputActions.Player.Interact.performed += Interact_performed;
         _playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
+        _playerInputActions.Player.SlowTime.performed += SlowTime_performed;
+    }
+
+    private void SlowTime_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnSlowTime?.Invoke(this, EventArgs.Empty);
     }
 
     private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
